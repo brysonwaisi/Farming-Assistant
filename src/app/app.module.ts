@@ -11,6 +11,12 @@ import { HomeComponent } from './components/home/home.component';
 import { ProductComponent } from './components/product/product.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NavBarComponent } from './components/home/nav-bar/nav-bar.component';
+import { FeaturedComponentComponent } from './components/home/featured-component/featured-component.component';
+import { SearchComponentComponent } from './components/home/search-component/search-component.component';
+import { FoodDisplayComponentComponent } from './components/home/food-display-component/food-display-component.component';
+import { FoodListComponentComponent } from './components/home/food-list-component/food-list-component.component';
+import { FoodItemComponentComponent } from './components/home/food-item-component/food-item-component.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +26,13 @@ import { HttpClientModule } from '@angular/common/http';
     CartComponent,
     CheckoutComponent,
     HomeComponent,
-    ProductComponent
+    ProductComponent,
+    NavBarComponent,
+    FeaturedComponentComponent,
+    SearchComponentComponent,
+    FoodDisplayComponentComponent,
+    FoodListComponentComponent,
+    FoodItemComponentComponent
   ],
   imports: [
     BrowserModule,
