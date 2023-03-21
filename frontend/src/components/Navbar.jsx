@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Badge } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { mobile } from "../smallScreen";
-import Logo from '../assets/logo.png'
+// import Logo from '../assets/logo.png'
 
 const Container = styled.div`
   height: 60px;
@@ -48,10 +48,10 @@ const Center = styled.div`
   text-align: center;
 `;
 
-// const Logo = styled.h1`
-//   font-weight: bold;
-//   ${mobile({ fontSize: "24px" })}
-// `;
+const Logo = styled.h1`
+  font-weight: bold;
+  ${mobile({ fontSize: "24px" })}
+`;
 const Right = styled.div`
   flex: 1;
   display: flex;
@@ -79,7 +79,8 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <img src={Logo} alt="Farming Assistant Logo" />
+          {/* <img src={Logo} alt="Farming Assistant Logo" /> */}
+          <Logo>Farming Assistant</Logo>
         </Center>
         <Right>
           <MenuItem>REGISTER</MenuItem>
