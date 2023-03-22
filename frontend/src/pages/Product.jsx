@@ -72,12 +72,12 @@ const FilterColor = styled.div`
   cursor: pointer;
 `;
 
-const FilterSize = styled.select`
+const FilterType = styled.select`
   margin-left: 10px;
   padding: 5px;
 `;
 
-const FilterSizeOption = styled.option``;
+const FilterTypeOption = styled.option``;
 
 const AddContainer = styled.div`
   width: 50%;
@@ -143,13 +143,13 @@ const Product = () => {
             </Filter> */}
             <Filter>
               <FilterTitle>Type</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>Small</FilterSizeOption>
-                <FilterSizeOption>Large</FilterSizeOption>
-                <FilterSizeOption>Family</FilterSizeOption>
-                <FilterSizeOption>Party</FilterSizeOption>
-                <FilterSizeOption>Festival</FilterSizeOption>
-              </FilterSize>
+              <FilterType>
+                <FilterTypeOption>Small</FilterTypeOption>
+                <FilterTypeOption>Large</FilterTypeOption>
+                <FilterTypeOption>Family</FilterTypeOption>
+                <FilterTypeOption>Party</FilterTypeOption>
+                <FilterTypeOption>Festival</FilterTypeOption>
+              </FilterType>
             </Filter>
           </FilterContainer>
           <AddContainer>
