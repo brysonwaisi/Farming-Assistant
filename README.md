@@ -2,7 +2,7 @@
 <p align="center">An eCommerce site for both farmers and consumers.</p>
 
 <p align="center">
-  ![Farming Assistant logo](./frontend/src/assets/hometxt.png)
+ <img src="https://github.com/brysonwaisi/farming-assistant/blob/master/frontend/src/assets/hometxt.png" />
 </p>
 
 
