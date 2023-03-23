@@ -5,11 +5,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
-import { useLocation } from 'react-router-dom'
-import { useState, useEffect } from "react";
-import { pubRequest } from '../reqMethods';
-import { useDispatch } from "react-redux";
-import { addProduct } from "../redux/cartRedux";
+import farmImg from "../assets/farm.jpeg"
 
 const Container = styled.div``;
 
@@ -120,67 +116,49 @@ const Button = styled.button`
 `;
 
 const Product = () => {
-  const location = useLocation();
-  const id = location.pathname.split("/")[2]
-  const [product, setProduct] = useState({});
-  const [quantity, setQuantity] = useState(1);
-  const [type, setType] = useState("");  
-  const dispatch = useDispatch();
-  
-  useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const res = await pubRequest.get("/products/find/" + id);
-        setProduct(res.data)
-      } catch {}
-    };
-    getProduct()
-  }, [id]);
-
-  const handleQuantity = (type) => {
-    if (type === "dec") {
-      quantity > 1 && setQuantity(quantity - 1);
-    } else {
-      setQuantity(quantity + 1);
-    }
-  };
-
-  const handleClick = () => {
-    dispatch(
-      addProduct({ ...product, quantity, type })
-    );
-  };
   return (
     <Container>
       <Navbar />
       <Welcome />
       <Wrapper>
         <ImgContainer>
-          <Image src={product.img} />
+          <Image src={farmImg} />
         </ImgContainer>
         <InfoContainer>
-          <Title>{product.title}</Title>
+          <Title>Fresh Products</Title>
           <Desc>
-            {product.desc}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+            venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
+            iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget
+            tristique tortor pretium ut. Curabitur elit justo, consequat id
+            condimentum ac, volutpat ornare.
           </Desc>
-          <Price>KES {product.price}</Price>
+          <Price>KES 1000</Price>
           <FilterContainer>
+            {/* <Filter>
+              <FilterTitle>Type</FilterTitle>
+              <FilterColor color="greens" />
+              <FilterColor color="oranges" />
+              <FilterColor color="cereals" />
+            </Filter> */}
             <Filter>
               <FilterTitle>Type</FilterTitle>
-              <FilterType onChange={(e) => setType(e.target.value)}>
-              {product.type.map((t) => (
-                <FilterTypeOption key={t} >{t}</FilterTypeOption>
-              ))}  
+              <FilterType>
+                <FilterTypeOption>Small</FilterTypeOption>
+                <FilterTypeOption>Large</FilterTypeOption>
+                <FilterTypeOption>Family</FilterTypeOption>
+                <FilterTypeOption>Party</FilterTypeOption>
+                <FilterTypeOption>Festival</FilterTypeOption>
               </FilterType>
             </Filter>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove onClick={() => handleQuantity("dec")}/>
-              <Amount>{quantity}</Amount>
-              <Add onClick={() => handleQuantity("inc")}/>
+              <Remove />
+              <Amount>1</Amount>
+              <Add />
             </AmountContainer>
-            <Button onClick={handleClick}>ADD TO CART</Button>
+            <Button>ADD TO CART</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
