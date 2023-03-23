@@ -8,7 +8,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("../assets/hometxt.png")
+    url("https://futtahighlights.files.wordpress.com/2023/03/hometxt.png?resize=219%2C219")
       center;
   background-size: cover;
   display: flex;

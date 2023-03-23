@@ -4,6 +4,13 @@ import Welcome from "../components/Welcome";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../smallScreen";
+import { useSelector } from "react-redux";
+import StripeCheckout from "react-stripe-checkout";
+import { useEffect, useState } from "react";
+import { userRequest } from "../reqMethods";
+import { useNavigate } from "react-router-dom";
+
+// const KEY = process.env.REACT_APP_STRIPE;
 
 const Container = styled.div``;
 
@@ -154,6 +161,28 @@ const Button = styled.button`
   font-weight: 600;`
 
 function Cart() {
+  const cart = useSelector((state) => state.cart);
+  const [stripeToken, setStripeToken] = useState(null);
+  const history = useNavigate();
+
+  const onToken = (token) => {
+    setStripeToken(token);
+  };
+
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const res = await userRequest.post("/checkout/payment", {
+          tokenId: stripeToken.id,
+          amount: 500,
+        });
+        history("/success", {
+          stripeData: res.data,
+          products: cart, });
+      } catch {}
+    };
+    stripeToken && makeRequest();
+  }, [stripeToken, cart.total, history]);
   return (
     <Container>
       <Navbar />
@@ -170,64 +199,35 @@ function Cart() {
         </Top>
         <Bottom>
           <Info>
-            <Product>
+            {cart.products.map((product) => (<Product>
               <ProductDetail>
-                <Image src="https://media.istockphoto.com/id/463651383/photo/mangoes-composition.jpg?s=612x612&w=0&k=20&c=Y96f43HrgKG247uCO1w5OiJSiq2ACoLgdFd3kMwIuvY=" />
+                <Image src={product.img} />
                 <Details>
                   <ProductName>
-                    <b>Product:</b> Mangoes
+                    <b>Product:</b> {product.title}
                   </ProductName>
                   <ProductId>
-                    <b>ID:</b> 93813718293
+                    <b>ID:</b> {product._id}
                   </ProductId>
-                  {/* <ProductColor color="black" /> */}
-                  <ProductQuantity>
-                    <b>Quantity:</b> 10
-                  </ProductQuantity>
                 </Details>
               </ProductDetail>
               <PriceDetail>
                 <ProductAmountContainer>
                   <Add />
-                  <ProductAmount>10</ProductAmount>
+                  <ProductAmount>{product.quantity}</ProductAmount>
                   <Remove />
                 </ProductAmountContainer>
-                <ProductPrice>KES 400</ProductPrice>
+                <ProductPrice>KES {product.price * product.quantity}</ProductPrice>
               </PriceDetail>
             </Product>
+            ))}
             <Hr />
-
-            <Product>
-              <ProductDetail>
-                <Image src="https://media.istockphoto.com/id/452352231/photo/pineapple.jpg?s=612x612&w=0&k=20&c=BioDwSdBPMlCpc56389y9JUsAJFGXkk5gr14R4hxikY=" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> Pineapple
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 93813718293
-                  </ProductId>
-                   {/* <ProductColor color="gray" /> */}
-                  <ProductQuantity>
-                    <b>Quantity:</b> 6
-                  </ProductQuantity>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>6</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>KES 2000</ProductPrice>
-              </PriceDetail>
-            </Product>
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>KES 2500</SummaryItemPrice>
+              <SummaryItemPrice>KES {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
@@ -239,9 +239,20 @@ function Cart() {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>KES 2200</SummaryItemPrice>
+              <SummaryItemPrice>KES {cart.total}</SummaryItemPrice>
             </SummaryItem>
+            <StripeCheckout
+              name="Farming Assistant"
+              image="https://futtahighlights.files.wordpress.com/2023/03/hometxt.png?resize=219%2C219"
+              billingAddress
+              shippingAddress
+              description={`Your total is $${cart.total}`}
+              amount={cart.total * 100}
+              token={onToken}
+              // stripeKey={KEY}
+            >
             <Button>CHECKOUT NOW</Button>
+            </StripeCheckout>
           </Summary>
         </Bottom>
       </Wrapper>
