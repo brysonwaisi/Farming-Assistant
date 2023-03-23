@@ -2,6 +2,6 @@
 <p align="center">An eCommerce site for both farmers and consumers.</p>
 
 <p align="center">
-  <img src="https://github.com/bdbaraban/AirBnB_clone_v2/blob/master/assets/hbnb_logo.png"
-	    alt="HolbertonBnB logo">
+  <img src=""
+	    alt="Farming Assistant logo">
 </p>
