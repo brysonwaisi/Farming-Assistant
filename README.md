@@ -6,4 +6,4 @@
 </p>
 
 
-This repository contains the final stage of a student project to build an eCommerce website. This stage implements an API backend interface using Node.js and MongoDB to store data. 
+This repository contains the final stage of a student project to build an eCommerce website. This stage implements a frontend eCommerceplatform using React.js and an API interface using Node.js and MongoDB to store data. 
