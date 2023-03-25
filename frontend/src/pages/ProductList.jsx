@@ -51,6 +51,7 @@ const ProductList = () => {
       [e.target.name]: value
     });
   }
+
   return (
     <Container>
       <Navbar />
