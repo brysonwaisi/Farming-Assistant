@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 import { userRequest } from "../reqMethods";
 
 const Success = () => {
@@ -23,7 +23,9 @@ const Success = () => {
           address: data.billing_details.address,
         });
         setOrderId(res.data._id);
-      } catch {}
+      } catch(err) {
+        console.error("Error creating order:", err);
+      }
     };
     data && createOrder();
   }, [cart, data, currentUser]);

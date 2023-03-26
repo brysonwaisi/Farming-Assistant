@@ -48,9 +48,10 @@ const ProductList = () => {
     const value = e.target.value;
     setFilter({
       ...filter,
-      [e.target.name]: value
+      [e.target.name]: value.toLowerCase()
     });
   }
+
   return (
     <Container>
       <Navbar />

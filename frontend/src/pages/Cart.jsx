@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { userRequest } from "../reqMethods";
 import { useNavigate } from "react-router-dom";
 
-// const KEY = process.env.REACT_APP_STRIPE;
+const KEY = "pk_test_51LS2h4GzhglqhjkKWkcdoLJdnQPHkgNKzb5dCfX1stFjUHluQRqwWpvkZGQgsziiRgY997HHRNIZ0NnjwIfBuI8F00LNpugPKO";
 
 const Container = styled.div``;
 
@@ -85,17 +85,6 @@ const Details = styled.div`
 const ProductName = styled.span``;
 
 const ProductId = styled.span``;
-
-const ProductQuantity = styled.span``;
-
-const ProductColor = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${(props) => props.color};
-`;
-
-const ProductSize = styled.span``;
 
 const PriceDetail = styled.div`
   flex: 1;
@@ -192,8 +181,8 @@ function Cart() {
         <Top>
           <TopButton>CONTINUE SHOPPING</TopButton>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
-            <TopText>Your Wishlist (0)</TopText>
+            <TopText>Shopping Bag</TopText>
+            <TopText>Your Wishlist </TopText>
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
         </Top>
@@ -229,14 +218,14 @@ function Cart() {
               <SummaryItemText>Subtotal</SummaryItemText>
               <SummaryItemPrice>KES {cart.total}</SummaryItemPrice>
             </SummaryItem>
-            <SummaryItem>
+            {/* <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
               <SummaryItemPrice>KES 300</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Shipping Discount</SummaryItemText>
               <SummaryItemPrice>KES -300</SummaryItemPrice>
-            </SummaryItem>
+            </SummaryItem> */}
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>KES {cart.total}</SummaryItemPrice>
@@ -249,7 +238,7 @@ function Cart() {
               description={`Your total is $${cart.total}`}
               amount={cart.total * 100}
               token={onToken}
-              // stripeKey={KEY}
+              stripeKey={KEY}
             >
             <Button>CHECKOUT NOW</Button>
             </StripeCheckout>

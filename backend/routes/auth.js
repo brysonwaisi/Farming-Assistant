@@ -24,28 +24,33 @@ router.post("/login", async (req, res) => {
 
   try {
     const user = await User.findOne({ username: req.body.username });
-    !user && res.status(401).json("Wrong username!");
+    if (!user) {
+      res.status(401).json("Wrong username!");
+    } else {
+      const hashedPass = CryptoJS.AES.decrypt(user.password, process.env.PASS_SECRET);
+      const originalPass = hashedPass.toString(CryptoJS.enc.Utf8);
 
-    const hashedPass = CryptoJS.AES.decrypt(user.password, process.env.PASS_SECRET);
-    const originalPass = hashedPass.toString(CryptoJS.enc.Utf8);
+      let inputPass = req.body.password;
 
-    let inputPass = req.body.password;
+      if (originalPass !== inputPass) {
+        res.status(401).json("Wrong password!");
+      } else {
+        const accessToken = jwt.sign({
+          id: user._id,
+          isAdmin: user.isAdmin,
+        },
+        process.env.JWT_SECRET,
+        {expiresIn: "5d"}
+        );
 
-    originalPass !== inputPass && res.status(401).json("Wrong password!");
-
-    const accessToken = jwt.sign({
-      id: user._id,
-      isAdmin: user.isAdmin,
-    },
-    process.env.JWT_SECRET,
-    {expiresIn: "1d"}
-    );
-
-    const { password, ...others } = user._doc;
-    res.status(200).json({...others, accessToken});
+        const { password, ...others } = user._doc;
+        res.status(200).json({...others, accessToken});
+      }
+    }
   } catch (err) {
     res.status(500).json(err)
   }
-})
+});
+
 
 module.exports = router;
