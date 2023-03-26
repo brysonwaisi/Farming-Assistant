@@ -78,7 +78,7 @@ const Login = () => {
     e.preventDefault();
     login(dispatch, { username, password });
   };
-  
+   
   return (
     <Container>
       <Wrapper>
@@ -86,8 +86,7 @@ const Login = () => {
         <Form>
           <Input placeholder="username"
             onChange={(e) => setUsername(e.target.value)} />
-          <Input placeholder="password" 
-            type="password"
+          <Input type="password" placeholder="password" 
             onChange={(e) => setPassword(e.target.value)}/>
           <Button onClick={handleClick} disabled={isFetching}>LOGIN</Button>
           {error && <Error>Check your details again...</Error>}
