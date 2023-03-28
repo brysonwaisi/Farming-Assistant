@@ -119,7 +119,6 @@ const Footer = () => {
           <ListItem>My Account</ListItem>
           <ListItem>Order Tracking</ListItem>
           <ListItem>Wishlist</ListItem>
-          <ListItem>Wishlist</ListItem>
           <ListItem>Terms</ListItem>
         </List>
       </Center>
@@ -129,7 +128,7 @@ const Footer = () => {
           <Room style={{marginRight:"10px"}}/> 22 Riverside Drive , Westalands Nairobi
         </ContactItem>
         <ContactItem>
-          <Phone style={{marginRight:"10px"}}/> +254 723 456 78
+          <Phone style={{marginRight:"10px"}}/> +254 72 45 78
         </ContactItem>
         <ContactItem>
           <MailOutline style={{marginRight:"10px"}} /> contact@farmingassistant.com

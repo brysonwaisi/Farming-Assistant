@@ -6,4 +6,17 @@
 </p>
 
 
-This repository contains the final stage of a student project to build an eCommerce website. This stage implements a frontend eCommerceplatform using React.js and an API interface using Node.js and MongoDB to store data. 
+This repository contains the final stage of a student project to build an eCommerce website. This stage implements a frontend eCommerce platform using React.js and an API interface using Node.js and MongoDB to store data. 
+
+## Setup the Environment
+Clone the repository. 
+Run `yarn` in both folders to install dependencies
+To start the client development server, run `yarn run dev` 
+To start the server, run `yarn start`
+
+
+<br>
+
+## Authors :black_nib:
+* **Bryson Nyamwange** <[brysonwaisi](https://github.com/brysonwaisi)>
+ 

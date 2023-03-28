@@ -19,11 +19,11 @@ function App() {
         <Route path="/product/:id" element={ <Product />} />
         <Route path="/success" element={ <Success />} />
         <Route
-          path="/register"
+          path="/register" 
           element={user ? <Navigate to="/" /> : <Register />}
         />
         <Route
-          path="/login"
+          path="/login" 
           element={user ? <Navigate to="/" /> : <Login />}
         />
         <Route path="/cart" element={ <Cart />} />
