@@ -10,7 +10,8 @@ import { useEffect, useState } from "react";
 import { userRequest } from "../reqMethods";
 import { useNavigate } from "react-router-dom";
 
-const KEY = "pk_test_51LS2h4GzhglqhjkKWkcdoLJdnQPHkgNKzb5dCfX1stFjUHluQRqwWpvkZGQgsziiRgY997HHRNIZ0NnjwIfBuI8F00LNpugPKO";
+const KEY =
+  "pk_test_51LS2h4GzhglqhjkKWkcdoLJdnQPHkgNKzb5dCfX1stFjUHluQRqwWpvkZGQgsziiRgY997HHRNIZ0NnjwIfBuI8F00LNpugPKO";
 
 const Container = styled.div``;
 
@@ -147,7 +148,8 @@ const Button = styled.button`
   padding: 10px;
   background-color: black;
   color: white;
-  font-weight: 600;`
+  font-weight: 600;
+`;
 
 function Cart() {
   const cart = useSelector((state) => state.cart);
@@ -167,7 +169,8 @@ function Cart() {
         });
         history("/success", {
           stripeData: res.data,
-          products: cart, });
+          products: cart,
+        });
       } catch {}
     };
     stripeToken && makeRequest();
@@ -188,27 +191,30 @@ function Cart() {
         </Top>
         <Bottom>
           <Info>
-            {cart.products.map((product) => (<Product>
-              <ProductDetail>
-                <Image src={product.img} />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> {product.title}
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> {product._id}
-                  </ProductId>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>{product.quantity}</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>KES {product.price * product.quantity}</ProductPrice>
-              </PriceDetail>
-            </Product>
+            {cart.products.map((product) => (
+              <Product>
+                <ProductDetail>
+                  <Image src={product.img} />
+                  <Details>
+                    <ProductName>
+                      <b>Product:</b> {product.title}
+                    </ProductName>
+                    <ProductId>
+                      <b>ID:</b> {product._id}
+                    </ProductId>
+                  </Details>
+                </ProductDetail>
+                <PriceDetail>
+                  <ProductAmountContainer>
+                    <Add />
+                    <ProductAmount>{product.quantity}</ProductAmount>
+                    <Remove />
+                  </ProductAmountContainer>
+                  <ProductPrice>
+                    KES {product.price * product.quantity}
+                  </ProductPrice>
+                </PriceDetail>
+              </Product>
             ))}
             <Hr />
           </Info>
@@ -237,10 +243,11 @@ function Cart() {
               shippingAddress
               description={`Your total is KES${cart.total}`}
               amount={cart.total * 100}
+              panelLabel="Pay Now"
               token={onToken}
               stripeKey={KEY}
             >
-            <Button>CHECKOUT NOW</Button>
+              <Button>CHECKOUT NOW</Button>
             </StripeCheckout>
           </Summary>
         </Bottom>
