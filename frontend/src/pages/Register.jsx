@@ -55,6 +55,29 @@ const Button = styled.button`
 `;
 
 const Register = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Perform registration logic using the formData
+    console.log(formData);
+  };
+  
   return (
     <Container>
       <Wrapper>
