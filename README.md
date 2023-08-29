@@ -24,9 +24,12 @@ To fire up the application once all the project dependencies have been successfu
 
 #### Functionalities
 
-- Display all aplications in the system
-- Choose an application to measure CPU and memory usage
-- Display CPU and Memory Usage
+- Display a slider to the site
+  <img src='https://github.com/brysonwaisi/farming-assistant/blob/master/frontend/src/assets/home.png' />
+- Choose a product based on the category
+  <img src="https://github.com/brysonwaisi/farming-assistant/blob/master/frontend/src/assets/categories.png" />
+- Footer
+  <img src="https://github.com/brysonwaisi/farming-assistant/blob/master/frontend/src/assets/foo.png" />
 
 ### Environment
 
