@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { mobile } from "../smallScreen";
 
@@ -61,14 +62,14 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -77,7 +78,7 @@ const Register = () => {
     // Perform registration logic using the formData
     console.log(formData);
   };
-  
+
   return (
     <Container>
       <Wrapper>

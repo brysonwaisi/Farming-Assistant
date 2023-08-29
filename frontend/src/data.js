@@ -25,19 +25,19 @@ export const sliderItems = [
 export const categories = [
   {
     id: 1,
-    img: "https://www.hsph.harvard.edu/nutritionsource/wp-content/uploads/sites/30/2012/09/vegetables-and-fruits-farmers-market.jpg",
+    img: "https://www.foodnavigator.com/var/wrbm_gb_food_pharma/storage/images/_aliases/wrbm_large/1/9/4/0/4100491-3-eng-GB/Office-veggies-Placing-vegetables-in-public-areas-raises-consumption-by-almost-double-finds-study.jpg",
     title: "VEGGIES",
     cat: "veggies",
   },
   {
     id: 2,
-    img: "https://www.world-grain.com/ext/resources/2022/05/10/Cereal-grains_cr-Adobe-Stock_E.jpg?height=667&t=1652190823&width=1080",
+    img: "https://shawellness.com/shamagazine/wp-content/uploads/2015/04/cereals1-800x450.jpg",
     title: "CEREALS",
     cat: "cereals",
   },
   {
     id: 3,
-    img: "https://www.healthyeating.org/images/default-source/home-0.0/nutrition-topics-2.0/general-nutrition-wellness/2-2-2-3foodgroups_fruits_detailfeature.jpg?sfvrsn=64942d53_4",
+    img: "https://www.diagnosisdiet.com/assets/images/c/fruit-og-d176ef00.jpg",
     title: "FRUITS",
     cat: "fruits",
   },
@@ -45,35 +45,35 @@ export const categories = [
 
 export const popularProducts = [
   {
-    id:1,
-    img:"https://greenspoon.co.ke/wp-content/uploads/2021/11/Greenspoon-Kwik-Basket-Sweet-Banana.jpg",
+    id: 1,
+    img: "https://greenspoon.co.ke/wp-content/uploads/2021/11/Greenspoon-Kwik-Basket-Sweet-Banana.jpg",
   },
   {
-    id:2,
-    img:"https://health.clevelandclinic.org/wp-content/uploads/sites/3/2022/09/Benefits-Of-Cabbage-589153824-770x533-1-650x428.jpg",
+    id: 2,
+    img: "https://health.clevelandclinic.org/wp-content/uploads/sites/3/2022/09/Benefits-Of-Cabbage-589153824-770x533-1-650x428.jpg",
   },
   {
-    id:3,
-    img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR49XKBMYjU8I4FNZALNVa7IHxJOy4IwgPb-A&usqp=CAU",
+    id: 3,
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR49XKBMYjU8I4FNZALNVa7IHxJOy4IwgPb-A&usqp=CAU",
   },
   {
-    id:4,
-    img:"https://images.healthshots.com/healthshots/en/uploads/2023/01/06161102/skimmed-milk.jpg",
+    id: 4,
+    img: "https://images.healthshots.com/healthshots/en/uploads/2023/01/06161102/skimmed-milk.jpg",
   },
   {
-    id:5,
-    img:"https://media.licdn.com/dms/image/C4E12AQH4iP9QyeOnOA/article-cover_image-shrink_600_2000/0/1591876023657?e=2147483647&v=beta&t=1EYHegJqF9KrLkset7tFIljNcdHpepnooXI6oHrzA9k",
+    id: 5,
+    img: "https://media.licdn.com/dms/image/C4E12AQH4iP9QyeOnOA/article-cover_image-shrink_600_2000/0/1591876023657?e=2147483647&v=beta&t=1EYHegJqF9KrLkset7tFIljNcdHpepnooXI6oHrzA9k",
   },
   {
-    id:6,
-    img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFZUyO0j8lU5trVmyh1ZPKS7DPZa0-Zzh01w&usqp=CAU",
+    id: 6,
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFZUyO0j8lU5trVmyh1ZPKS7DPZa0-Zzh01w&usqp=CAU",
   },
   {
-    id:7,
-    img:"https://cdn.shopify.com/s/files/1/0018/8327/5325/products/Pineapple22.jpg?v=1669709152",
+    id: 7,
+    img: "https://cdn.shopify.com/s/files/1/0018/8327/5325/products/Pineapple22.jpg?v=1669709152",
   },
   {
-    id:8,
-    img:"https://info.ehl.edu/hubfs/1440/1440x960-spices.jpg",
-  }
-]
+    id: 8,
+    img: "https://info.ehl.edu/hubfs/1440/1440x960-spices.jpg",
+  },
+];

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {mobile} from "../smallScreen";
+import { mobile } from "../smallScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/apiCalls";
 import { useState } from "react";
@@ -54,7 +54,7 @@ const Button = styled.button`
   &:disabled {
     color: green;
     cursor: not-allowed;
-  };
+  }
 `;
 
 const Error = styled.span`
@@ -78,18 +78,25 @@ const Login = () => {
     e.preventDefault();
     login(dispatch, { username, password });
   };
-   
+
   return (
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
         <Form>
-          <Input placeholder="username"
-            onChange={(e) => setUsername(e.target.value)} />
-          <Input type="password" placeholder="password" 
-            onChange={(e) => setPassword(e.target.value)}/>
-          <Button onClick={handleClick} disabled={isFetching}>LOGIN</Button>
-            {/* {error && <Error>Check your details again...</Error>} */}
+          <Input
+            placeholder="username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            type="password"
+            placeholder="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button onClick={handleClick} disabled={isFetching}>
+            LOGIN
+          </Button>
+          {/* {error && <Error>Check your details again...</Error>} */}
           <Link>FORGOT PASSWORD?</Link>
           <Link to="/register">CREATE A NEW ACCOUNT</Link>
         </Form>

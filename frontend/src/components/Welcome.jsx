@@ -12,8 +12,11 @@ const Container = styled.div`
 `;
 
 const Welcome = () => {
-  return 
-  <Container>Amazing Deal! Get Free Shipping on Orders Above KES 5000</Container>
-}
+  return (
+    <Container>
+      Amazing Deal! Get Free Shipping on Orders Above KES 5000
+    </Container>
+  );
+};
 
-export default Welcome
+export default Welcome;

@@ -70,9 +70,10 @@ const Icon = styled.div`
 
 const Product = ({ item }) => {
   return (
-    <Container >
-      <Circle />
-      <Image src={item.img} />
+    <Container>
+      <Circle>
+        <Image src={item.img} />
+      </Circle>
       <Info>
         <Icon>
           <ShoppingCartOutlined />

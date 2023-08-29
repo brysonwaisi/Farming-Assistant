@@ -5,9 +5,9 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
-import { useLocation } from 'react-router-dom'
+import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { pubRequest } from '../reqMethods';
+import { pubRequest } from "../reqMethods";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../redux/cartRedux";
 
@@ -16,7 +16,7 @@ const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
-  ${mobile({ padding: "10px", flexDirection:"column" })}
+  ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 
 const ImgContainer = styled.div`
@@ -114,27 +114,27 @@ const Button = styled.button`
   background-color: white;
   cursor: pointer;
   font-weight: 500;
-  &:hover{
-      background-color: #f8f4f4;
+  &:hover {
+    background-color: #f8f4f4;
   }
 `;
 
 const Product = () => {
   const location = useLocation();
-  const id = location.pathname.split("/")[2]
+  const id = location.pathname.split("/")[2];
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
-  const [type, setType] = useState("");  
+  const [type, setType] = useState("");
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     const getProduct = async () => {
       try {
         const res = await pubRequest.get("/products/find/" + id);
-        setProduct(res.data)
+        setProduct(res.data);
       } catch {}
     };
-    getProduct()
+    getProduct();
   }, [id]);
 
   const handleQuantity = (type) => {
@@ -146,9 +146,7 @@ const Product = () => {
   };
 
   const handleClick = () => {
-    dispatch(
-      addProduct({ ...product, quantity, type })
-    );
+    dispatch(addProduct({ ...product, quantity, type }));
   };
   return (
     <Container>
@@ -160,25 +158,23 @@ const Product = () => {
         </ImgContainer>
         <InfoContainer>
           <Title>{product.title}</Title>
-          <Desc>
-            {product.desc}
-          </Desc>
+          <Desc>{product.desc}</Desc>
           <Price>KES {product.price}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Type</FilterTitle>
               <FilterType onChange={(e) => setType(e.target.value)}>
-              {product.type.map((t) => (
-                <FilterTypeOption key={t} >{t}</FilterTypeOption>
-              ))}  
+                {product.type.map((t) => (
+                  <FilterTypeOption key={t}>{t}</FilterTypeOption>
+                ))}
               </FilterType>
             </Filter>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove onClick={() => handleQuantity("dec")}/>
+              <Remove onClick={() => handleQuantity("dec")} />
               <Amount>{quantity}</Amount>
-              <Add onClick={() => handleQuantity("inc")}/>
+              <Add onClick={() => handleQuantity("inc")} />
             </AmountContainer>
             <Button onClick={handleClick}>ADD TO CART</Button>
           </AddContainer>

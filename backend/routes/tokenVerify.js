@@ -1,41 +1,41 @@
 const jwt = require("jsonwebtoken");
 
 const verifyToken = (req, res, next) => {
-  const authHeader = req.headers.token
+  const authHeader = req.headers.token;
   if (authHeader) {
     const token = authHeader.split(" ")[1];
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-      if (err) res.status(401).json('Token is not valid! ');
+      if (err) res.status(401).json("Token is not valid! ");
       req.user = user;
-      next()
-    })
+      next();
+    });
   } else {
-    return res.status(401).json('You are not authenticated') 
+    return res.status(401).json("You are not authenticated");
   }
 };
 
 const verifyTokenAndAuthorization = (req, res, next) => {
   verifyToken(req, res, () => {
     if (req.user && (req.user.id === req.params.id || req.user.isAdmin)) {
-      next()
+      next();
     } else {
-      res.status(403).json('You are not allowed to perform the operation!')
+      res.status(403).json("You are not allowed to perform the operation!");
     }
-  })
-}
+  });
+};
 
 const verifyTokenAndAdmin = (req, res, next) => {
   verifyToken(req, res, () => {
-    if ( req.user.isAdmin) {
-      next()
+    if (req.user.isAdmin) {
+      next();
     } else {
-      res.status(403).json('You are not allowed to perform the operation!')
+      res.status(403).json("You are not allowed to perform the operation!");
     }
-  })
-}
+  });
+};
 
-module.exports = { 
+module.exports = {
   verifyToken,
   verifyTokenAndAuthorization,
-  verifyTokenAndAdmin
+  verifyTokenAndAdmin,
 };

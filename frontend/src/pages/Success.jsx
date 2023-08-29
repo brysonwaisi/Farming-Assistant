@@ -5,9 +5,11 @@ import { userRequest } from "../reqMethods";
 
 const Success = () => {
   const location = useLocation();
+  console.log("location.state:", location.state);
   const data = location.state.stripeData;
   const cart = location.state.cart;
   const currentUser = useSelector((state) => state.user.currentUser);
+  console.log("currentUser:", currentUser);
   const [orderId, setOrderId] = useState(null);
 
   useEffect(() => {
@@ -23,7 +25,7 @@ const Success = () => {
           address: data.billing_details.address,
         });
         setOrderId(res.data._id);
-      } catch(err) {
+      } catch (err) {
         console.error("Error creating order:", err);
       }
     };

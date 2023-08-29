@@ -80,7 +80,7 @@ const ContactItem = styled.div`
 `;
 
 const Payment = styled.img`
-    width: 50%;
+  width: 50%;
 `;
 
 const Footer = () => {
@@ -89,9 +89,11 @@ const Footer = () => {
       <Left>
         <Logo>FARMING ASSISTANT</Logo>
         <Desc>
-          There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don’t look even slightly believable.
+          Farming Assistant is an innovative agricultural technology company
+          dedicated to revolutionizing and enhancing modern farming practices
+          through cutting-edge solutions. Farming Assistant aims to bridge the
+          gap between traditional farming methods and the latest advancements in
+          technology.
         </Desc>
         <SocialContainer>
           <SocialIcon color="3B5999">
@@ -125,13 +127,15 @@ const Footer = () => {
       <Right>
         <Title>Contact</Title>
         <ContactItem>
-          <Room style={{marginRight:"10px"}}/> 22 Riverside Drive , Westalands Nairobi
+          <Room style={{ marginRight: "10px" }} /> 22 Riverside Drive ,
+          Westalands Nairobi
         </ContactItem>
         <ContactItem>
-          <Phone style={{marginRight:"10px"}}/> +254 72 45 78
+          <Phone style={{ marginRight: "10px" }} /> +254 72 45 78
         </ContactItem>
         <ContactItem>
-          <MailOutline style={{marginRight:"10px"}} /> contact@farmingassistant.com
+          <MailOutline style={{ marginRight: "10px" }} />{" "}
+          contact@farmingassistant.com
         </ContactItem>
         <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
       </Right>
