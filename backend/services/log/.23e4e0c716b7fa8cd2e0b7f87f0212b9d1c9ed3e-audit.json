@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 30
+    },
+    "auditLog": "/home/bryson/farming-assistant/backend/services/log/.23e4e0c716b7fa8cd2e0b7f87f0212b9d1c9ed3e-audit.json",
+    "files": [
+        {
+            "date": 1703414266754,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2023-12-24-13-results.log",
+            "hash": "95cf0f4933471f332b67e05959291273739557ee108ecdae5dd7c40a0869e9c3"
+        },
+        {
+            "date": 1703446580008,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2023-12-24-22-results.log",
+            "hash": "4310d988e9c4b4e09d22e344e036aa1bbbcf7bce4888d52b51777f568b557c09"
+        }
+    ],
+    "hashType": "sha256"
+}
