@@ -1,2 +1,11 @@
 mongodb
 node_modules
+# logs
+log
+
+# terraform 
+.terraform.lock.hcl
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+*tfvars

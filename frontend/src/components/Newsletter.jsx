@@ -1,6 +1,9 @@
 import { Send } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../smallScreen";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { subscriptions } from "../redux/apiCalls";
 
 const Container = styled.div`
   height: 60vh;
@@ -44,18 +47,50 @@ const Button = styled.button`
   background-color: teal;
   color: white;
 `;
+const validateEmail = (email) => {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+};
 
 const Newsletter = () => {
+  const [email, setEmail] = useState("");
+  const [emailerror, setEmailerror] = useState("");
+  const dispatch = useDispatch();
+
+  const { isLoading, success, error } = useSelector((state) => state.sub);
+  const handleSubscription = async () => {
+    if (!validateEmail(email)) {
+      setEmailerror("Please enter a valid email");
+      return;
+    }
+    if (!email.trim()) {
+      
+      setEmailerror("Email is required"); 
+      return;
+    }
+    dispatch(subscriptions({email}));
+    setEmail("");
+    setEmailerror("");
+  };
+
   return (
     <Container>
       <Title>Newsletter</Title>
       <Desc>Get timely updates from your favorite products.</Desc>
       <InputContainer>
-        <Input placeholder="Your email" />
-        <Button>
+      
+        <Input
+          placeholder="Your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Button onClick={handleSubscription}>
           <Send />
         </Button>
       </InputContainer>
+      {isLoading && <p>Loading...</p>}
+      {success && <p>Subscription successful!</p>}
+      {emailerror && <p>Subscription failed. Please try again.</p>}
     </Container>
   );
 };

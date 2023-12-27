@@ -41,6 +41,7 @@ const Input = styled.input`
   min-width: 40%;
   margin: 10px 0;
   padding: 10px;
+  font-size: 24px;
 `;
 
 const Button = styled.button`
@@ -51,6 +52,7 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
+  font-size: 18px;
   &:disabled {
     color: green;
     cursor: not-allowed;
@@ -63,7 +65,7 @@ const Error = styled.span`
 
 const Link = styled.a`
   margin: 5px 0px;
-  font-size: 12px;
+  font-size: 18px;
   text-decoration: underline;
   cursor: pointer;
 `;
@@ -73,7 +75,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
-
+  console.log(user)
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
@@ -96,7 +98,7 @@ const Login = () => {
           <Button onClick={handleClick} disabled={isFetching}>
             LOGIN
           </Button>
-          {/* {error && <Error>Check your details again...</Error>} */}
+          {error && <Error>Check your details again...</Error>}
           <Link>FORGOT PASSWORD?</Link>
           <Link to="/register">CREATE A NEW ACCOUNT</Link>
         </Form>

@@ -14,6 +14,51 @@
             "date": 1703446580008,
             "name": "/home/bryson/farming-assistant/backend/services/log/2023-12-24-22-results.log",
             "hash": "4310d988e9c4b4e09d22e344e036aa1bbbcf7bce4888d52b51777f568b557c09"
+        },
+        {
+            "date": 1703610199138,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2023-12-26-20-results.log",
+            "hash": "f6d50cc7f00fe59d7c8589bd5b1d752b2ff42251a1cf1e3092f705566ef7074f"
+        },
+        {
+            "date": 1703613654947,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2023-12-26-21-results.log",
+            "hash": "8b0bf42de08e367f27ecb95d846f59b9e268edc5dfd7e52e3ebad01e0992d762"
+        },
+        {
+            "date": 1703617200587,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2023-12-26-22-results.log",
+            "hash": "bb414bb2fbec0210684033e39b7ac082f4824a0c8721a829299d3f11d2cc007e"
+        },
+        {
+            "date": 1703620815314,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2023-12-26-23-results.log",
+            "hash": "7d1a7c496c115c449d3aefffe653b02c74bf868f2e8c0d681a7891d677f78ad9"
+        },
+        {
+            "date": 1703627550042,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2023-12-27-00-results.log",
+            "hash": "bbeb562e2aaeb1e1cc70cff6db279fe86d2bd29f449b7399c8d154160ebd2e4f"
+        },
+        {
+            "date": 1703628167671,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2023-12-27-01-results.log",
+            "hash": "58b388a6e2dd260acb5975d9a4bd98bfd229e91232a76d4d99014622bfee2643"
+        },
+        {
+            "date": 1703664681053,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2023-12-27-11-results.log",
+            "hash": "b2a5fea71a47240b41fd67f252978f99cc5b34de207f0e046075d853dbeb2f64"
+        },
+        {
+            "date": 1703673055840,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2023-12-27-13-results.log",
+            "hash": "aa5304db21d55f93895bc1b2e137f729bc5c949413f207589d96dc771a155188"
+        },
+        {
+            "date": 1703676444418,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2023-12-27-14-results.log",
+            "hash": "61e617145d516e4ca38b608c9d5ab7e7d483f6c31cbd27e44e2a19775a19373c"
         }
     ],
     "hashType": "sha256"

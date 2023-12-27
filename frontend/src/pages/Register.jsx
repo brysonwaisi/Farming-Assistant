@@ -1,6 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { mobile } from "../smallScreen";
+import { useDispatch } from "react-redux";
+import { signup } from "../redux/apiCalls";
+import { useNavigate } from "react-router-dom"; 
 
 const Container = styled.div`
   width: 100vw;
@@ -39,10 +42,11 @@ const Input = styled.input`
   min-width: 40%;
   margin: 20px 10px 0px 0px;
   padding: 10px;
+  font-size: 22px
 `;
 
 const Agreement = styled.span`
-  font-size: 12px;
+  font-size: 15px;
   margin: 20px 0px;
 `;
 
@@ -53,9 +57,13 @@ const Button = styled.button`
   background-color: teal;
   color: white;
   cursor: pointer;
+  font-size: 18px;
 `;
 
 const Register = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     name: "",
     lastName: "",
@@ -73,28 +81,42 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Perform registration logic using the formData
-    console.log(formData);
+      await dispatch(signup(formData));
+      navigate("/login");
   };
 
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
-        <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="confirm password" />
+        <Form onSubmit={handleSubmit}>
+          <Input placeholder="first name" onChange={handleChange} />
+          <Input
+            placeholder="last name"
+            onChange={handleChange}
+          />
+          <Input
+            placeholder="username"
+            onChange={handleChange}
+          />
+          <Input placeholder="email" type="email" onChange={handleChange} />
+          <Input
+            placeholder="password"
+            type="password"
+            onChange={handleChange}
+          />
+          <Input
+            placeholder="confirm password"
+            type="password"
+            onChange={handleChange}
+          />
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button>CREATE</Button>
+          <Button type="submit">CREATE</Button>
         </Form>
       </Wrapper>
     </Container>

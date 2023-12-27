@@ -69,6 +69,11 @@ const Icon = styled.div`
 `;
 
 const Product = ({ item }) => {
+
+  if (!item) {
+    return <div>No item available</div>;
+  }
+  
   return (
     <Container>
       <Circle>

@@ -6,7 +6,8 @@ const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
-const stripeRoute = require("./routes/stripe")
+const stripeRoute = require("./routes/stripe");
+const newsletterRoute = require('./routes/newsletter');
 const cors = require('cors');
 const morgan = require('morgan')
 const bodyParser = require("body-parser");
@@ -52,7 +53,7 @@ app.use("/api/products", productRoute)
 app.use("/api/carts", cartRoute)
 app.use("/api/orders", orderRoute)
 app.use("/api/checkout", stripeRoute)
-
+app.use("/api/subscribe", newsletterRoute);
 
 const server = http.createServer(app);
 

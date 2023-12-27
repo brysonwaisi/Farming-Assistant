@@ -224,14 +224,6 @@ function Cart() {
               <SummaryItemText>Subtotal</SummaryItemText>
               <SummaryItemPrice>KES {cart.total}</SummaryItemPrice>
             </SummaryItem>
-            {/* <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>KES 300</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>KES -300</SummaryItemPrice>
-            </SummaryItem> */}
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>KES {cart.total}</SummaryItemPrice>

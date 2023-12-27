@@ -3,7 +3,7 @@ version: '3.9'
 services:
   frontend:
     container_name: frontend
-    image: frontend
+    image: nyamwange/frontend:latest
     build:
       context: ./frontend
       dockerfile: Dockerfile.frontend
@@ -17,7 +17,7 @@ services:
       
   backend:
     container_name: backend
-    image: backend
+    image: nyamwange/backend:latest
     build:
       context: ./backend
       dockerfile: Dockerfile.backend

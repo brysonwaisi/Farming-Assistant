@@ -24,6 +24,7 @@ const Products = ({ cat, filter, sort }) => {
         );
 
         setProducts(res.data);
+        console.log("Fetched Products:", products);
       } catch (err) {
         console.error(err);
         setProducts([]);

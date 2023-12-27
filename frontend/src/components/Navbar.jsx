@@ -72,6 +72,8 @@ const MenuItem = styled.div`
 
 const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
 
   return (
     <Container>
@@ -80,28 +82,44 @@ const Navbar = () => {
           <Language>EN</Language>
           <SearchContainer>
             <Input placeholder="Search" />
-            <Search style={{ color: 'gray', fontSize: 16 }} />
+            <Search style={{ color: "gray", fontSize: 16 }} />
           </SearchContainer>
         </Left>
         <Center>
-          <Link to="/" style={{ textDecoration: 'none'}}>
+          <Link to="/" style={{ textDecoration: "none" }}>
             <Logo>Farming Assistant</Logo>
           </Link>
         </Center>
         <Right>
-        <Link to="/register" style={{ textDecoration: 'none'}}>
-          <MenuItem>REGISTER</MenuItem>
-        </Link>
-        <Link to="/login" style={{ textDecoration: 'none'}}>
-          <MenuItem>SIGN IN</MenuItem>
-        </Link>
-          <Link to="/cart">
-            <MenuItem>
-              <Badge badgeContent={quantity} color="primary" overlap="rectangular">
-                <ShoppingCartOutlined />
-              </Badge>
-            </MenuItem>
-          </Link>
+          {!isLoggedIn && (
+            <>
+              <Link to="/register" style={{ textDecoration: "none" }}>
+                <MenuItem>REGISTER</MenuItem>
+              </Link>
+              <Link to="/login" style={{ textDecoration: "none" }}>
+                <MenuItem>SIGN IN</MenuItem>
+              </Link>
+            </>
+          )}
+          {isLoggedIn && (
+            <>
+              <Link to="/logout" style={{ textDecoration: "none" }}>
+                <MenuItem>LOGOUT</MenuItem>
+              </Link>
+
+              <Link to="/cart">
+                <MenuItem>
+                  <Badge
+                    badgeContent={quantity}
+                    color="primary"
+                    overlap="rectangular"
+                  >
+                    <ShoppingCartOutlined />
+                  </Badge>
+                </MenuItem>
+              </Link>
+            </>
+          )}
         </Right>
       </Wrapper>
     </Container>
