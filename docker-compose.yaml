@@ -40,5 +40,18 @@ services:
     volumes:
       - ./mongodb:/data/db
 
+  fluentd:
+    container_name: fluentd
+    user: root
+    image: fluent/fluentd:v1.11-debian
+    build:
+      context: ./monitoring/logging/fluentd
+    volumes:
+    - /var/lib/docker/containers:/fluentd/log/containers
+    - ./monitoring/logging/fluentd/configurations/fluent.conf:/fluentd/etc/fluent.conf
+    - ./monitoring/logging/fluentd/logs:/output/
+    logging:
+      driver: "local"
+
 volumes:
   mongo_db: {}

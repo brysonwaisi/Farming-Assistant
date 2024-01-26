@@ -15,7 +15,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: farmassistant.com
+  - host: farming-assistant.com
     http:
       paths:
       - path: /

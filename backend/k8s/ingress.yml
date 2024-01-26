@@ -15,7 +15,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: api.farmassistant.com
+  - host: api.farming-assistant.com
     http:
       paths:
       - path: /
@@ -28,6 +28,6 @@ spec:
 
   tls:
   - hosts:
-      - api.farmassistant.com
-    secretName: farmassistant-api-cert
+      - api.farming-assistant.com
+    secretName: farmingassistants-api-cert
   
