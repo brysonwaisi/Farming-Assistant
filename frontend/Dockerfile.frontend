@@ -1,17 +1,13 @@
-FROM node:18-alpine
-
+# build stage
+FROM node:lts-alpine as build-stage
 WORKDIR /app
-
-RUN chown -R node:node /app
-
-USER node
-
-COPY package.json yarn.lock* package-lock.json* ./
-
-RUN yarn install && yarn global add vite
-
+COPY package*.json ./
+RUN npm ci
 COPY . .
+RUN npm run build
 
-EXPOSE 5173
-
-CMD ["yarn", "run", "dev"]
+# production stage
+FROM nginx:stable-alpine as production-stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
