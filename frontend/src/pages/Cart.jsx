@@ -5,13 +5,13 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../smallScreen";
 import { useSelector } from "react-redux";
-import StripeCheckout from "react-stripe-checkout";
+import { loadStripe } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
 import { userRequest } from "../reqMethods";
 import { useNavigate } from "react-router-dom";
 
-const KEY =
-  "pk_test_51LS2h4GzhglqhjkKWkcdoLJdnQPHkgNKzb5dCfX1stFjUHluQRqwWpvkZGQgsziiRgY997HHRNIZ0NnjwIfBuI8F00LNpugPKO";
+const KEY = import.meta.env.VITE_PUBLISHABLE_KEY;
+const stripePromise = loadStripe(KEY);
 
 const Container = styled.div``;
 
@@ -153,28 +153,34 @@ const Button = styled.button`
 
 function Cart() {
   const cart = useSelector((state) => state.cart);
-  const [stripeToken, setStripeToken] = useState(null);
   const history = useNavigate();
 
-  const onToken = (token) => {
-    setStripeToken(token);
+  const handleCheckout = async () => {
+    const stripe = await stripePromise;
+
+    const response = await userRequest.post(
+      "/checkout/create-checkout-session",
+      {
+        items: cart.products.map((product) => ({
+          name: product.title,
+          price: product.price,
+          quantity: product.quantity,
+        })),
+      }
+    );
+
+    const session = response.data;
+
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      console.error(result.error.message);
+    }
   };
 
-  useEffect(() => {
-    const makeRequest = async () => {
-      try {
-        const res = await userRequest.post("/checkout/payment", {
-          tokenId: stripeToken.id,
-          amount: 500,
-        });
-        history("/success", {
-          stripeData: res.data,
-          products: cart,
-        });
-      } catch {}
-    };
-    stripeToken && makeRequest();
-  }, [stripeToken, cart.total, history]);
+
   return (
     <Container>
       <Navbar />
@@ -185,14 +191,16 @@ function Cart() {
           <TopButton>CONTINUE SHOPPING</TopButton>
           <TopTexts>
             <TopText>Shopping Bag</TopText>
-            <TopText>Your Wishlist </TopText>
+            <TopText>Your Wishlist</TopText>
           </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          <TopButton type="filled" onClick={handleCheckout}>
+            CHECKOUT NOW
+          </TopButton>
         </Top>
         <Bottom>
           <Info>
             {cart.products.map((product) => (
-              <Product>
+              <Product key={product._id}>
                 <ProductDetail>
                   <Image src={product.img} />
                   <Details>
@@ -228,19 +236,7 @@ function Cart() {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>KES {cart.total}</SummaryItemPrice>
             </SummaryItem>
-            <StripeCheckout
-              name="Farming Assistant"
-              image="https://futtahighlights.files.wordpress.com/2023/03/hometxt.png?resize=219%2C219"
-              billingAddress
-              shippingAddress
-              description={`Your total is KES${cart.total}`}
-              amount={cart.total * 100}
-              panelLabel="Pay Now"
-              token={onToken}
-              stripeKey={KEY}
-            >
-              <Button>CHECKOUT NOW</Button>
-            </StripeCheckout>
+            <Button onClick={handleCheckout}>CHECKOUT NOW</Button>
           </Summary>
         </Bottom>
       </Wrapper>

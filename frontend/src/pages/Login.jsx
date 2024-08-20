@@ -3,6 +3,7 @@ import { mobile } from "../smallScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/apiCalls";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
@@ -63,7 +64,8 @@ const Error = styled.span`
   color: red;
 `;
 
-const Link = styled.a`
+const StyledLink = styled(Link)`
+  // Use styled-components for Link styling
   margin: 5px 0px;
   font-size: 18px;
   text-decoration: underline;
@@ -75,7 +77,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
-  console.log(user)
+
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
@@ -99,8 +101,8 @@ const Login = () => {
             LOGIN
           </Button>
           {error && <Error>Check your details again...</Error>}
-          <Link>FORGOT PASSWORD?</Link>
-          <Link to="/register">CREATE A NEW ACCOUNT</Link>
+          <StyledLink to="/forgot-password">FORGOT PASSWORD?</StyledLink>{" "}
+          <StyledLink to="/register">CREATE A NEW ACCOUNT</StyledLink>{" "}
         </Form>
       </Wrapper>
     </Container>

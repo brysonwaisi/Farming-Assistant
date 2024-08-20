@@ -73,11 +73,11 @@ const Product = ({ item }) => {
   if (!item) {
     return <div>No item available</div>;
   }
-  
+
   return (
     <Container>
       <Circle>
-        <Image src={item.img} />
+        <Image src={item.img} alt={item.title || "Product image"} />
       </Circle>
       <Info>
         <Icon>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Product from "./Product";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { userRequest } from "../reqMethods";
 
 const Container = styled.div`
   padding: 20px;
@@ -17,16 +17,14 @@ const Products = ({ cat, filter, sort }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await axios.get(
+        const res = await userRequest.get(
           cat
-            ? `http://localhost:5000/api/products?categories=${cat}`
-            : "http://localhost:5000/api/products"
+            ? `products?categories=${cat}`
+            : "products"
         );
 
         setProducts(res.data);
-        console.log("Fetched Products:", products);
       } catch (err) {
-        console.error(err);
         setProducts([]);
       }
     };

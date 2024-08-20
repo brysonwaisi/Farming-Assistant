@@ -83,8 +83,8 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-      await dispatch(signup(formData));
-      navigate("/login");
+    await dispatch(signup(formData));
+    navigate("/login");
   };
 
   return (
@@ -92,22 +92,35 @@ const Register = () => {
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form onSubmit={handleSubmit}>
-          <Input placeholder="first name" onChange={handleChange} />
           <Input
+            name="name"
+            placeholder="first name"
+            onChange={handleChange}
+          />
+          <Input
+            name="lastName"
             placeholder="last name"
             onChange={handleChange}
           />
           <Input
+            name="username"
             placeholder="username"
             onChange={handleChange}
           />
-          <Input placeholder="email" type="email" onChange={handleChange} />
           <Input
+            name="email"
+            placeholder="email"
+            type="email"
+            onChange={handleChange}
+          />
+          <Input
+            name="password"
             placeholder="password"
             type="password"
             onChange={handleChange}
           />
           <Input
+            name="confirmPassword"
             placeholder="confirm password"
             type="password"
             onChange={handleChange}
@@ -124,3 +137,4 @@ const Register = () => {
 };
 
 export default Register;
+
