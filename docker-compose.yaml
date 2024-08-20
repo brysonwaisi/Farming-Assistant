@@ -47,9 +47,9 @@ services:
     build:
       context: ./monitoring/logging/fluentd
     volumes:
-    - /var/lib/docker/containers:/fluentd/log/containers
+    - /var/lib/docker/containers:/fluentd/log/containers # Read docker logs
     - ./monitoring/logging/fluentd/configurations/fluent.conf:/fluentd/etc/fluent.conf
-    - ./monitoring/logging/fluentd/logs:/output/
+    - ./monitoring/logging/fluentd/logs:/output/ # logs will be collcted and stored here
     logging:
       driver: "local"
 
