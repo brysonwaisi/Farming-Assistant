@@ -24,6 +24,16 @@
             "date": 1724071138390,
             "name": "/home/bryson/farming-assistant/backend/services/log/2024-08-19-15-results.log",
             "hash": "1b58afbb589fca25e421ad88f40cdae642ec52943bec9d55572b4587e51ab36f"
+        },
+        {
+            "date": 1724583612577,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2024-08-25-14-results.log",
+            "hash": "4e3df73412176a30ea1aa865972f0c51291dafe7c9bdd8c63bc13ad9521711c1"
+        },
+        {
+            "date": 1724587403148,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2024-08-25-15-results.log",
+            "hash": "6ae9e2b10907e90afa8e03111605101514385bef43819f63d9079dd81f1ed597"
         }
     ],
     "hashType": "sha256"

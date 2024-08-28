@@ -4,7 +4,7 @@ import Welcome from "../components/Welcome";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
-import { mobile } from "../responsive";
+import { mobile } from "../smallScreen";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { pubRequest } from "../reqMethods";
@@ -131,8 +131,11 @@ const Product = () => {
     const getProduct = async () => {
       try {
         const res = await pubRequest.get("/products/find/" + id);
+        console.log("Fetched product data:", res.data);
         setProduct(res.data);
-      } catch {}
+      } catch (error) {
+      console.error("Error fetching product:", error);
+      }
     };
     getProduct();
   }, [id]);

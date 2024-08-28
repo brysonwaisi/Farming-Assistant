@@ -3,8 +3,9 @@ import {
   SearchOutlined,
   ShoppingCartOutlined,
 } from "@material-ui/icons";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
 
 const Info = styled.div`
   opacity: 0;
@@ -77,7 +78,7 @@ const Product = ({ item }) => {
   return (
     <Container>
       <Circle>
-        <Image src={item.img} alt={item.title || "Product image"} />
+        <Image src={item.img} />
       </Circle>
       <Info>
         <Icon>
