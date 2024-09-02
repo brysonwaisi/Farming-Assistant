@@ -166,6 +166,9 @@ const Product = () => {
           <FilterContainer>
             <Filter>
               <FilterTitle>Type</FilterTitle>
+              {product.type?.map((t) => (
+                <FilterColor color={t} key={t} onClick={() => setColor(t)} />
+              ))}
               <FilterType onChange={(e) => setType(e.target.value)}>
                 {product.type.map((t) => (
                   <FilterTypeOption key={t}>{t}</FilterTypeOption>

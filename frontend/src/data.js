@@ -8,14 +8,14 @@ export const sliderItems = [
   },
   {
     id: 2,
-    img: "https://g2h4v2c9.stackpathcdn.com/themes/agrarium/wp-content/uploads/2021/08/Layer-851-1-300x233.png",
+    img: "https://media.istockphoto.com/id/2122753326/photo/organic-fresh-berries.jpg?s=612x612&w=0&k=20&c=O-FTYIVuX7j27gHiMdrnMWw6TrY51-h7I3uBqrN7RO8=",
     title: "TASTY PRODUCTS ",
     desc: "GET FLAT 30% OFF SALE.",
     bg: "fcf1ed",
   },
   {
     id: 3,
-    img: "https://g2h4v2c9.stackpathcdn.com/themes/agrarium/wp-content/uploads/2021/09/Layer-594-2-300x233.png",
+    img: "https://cdn.mafrservices.com/sys-master-root/h32/hc2/27675590098974/553268_main.jpg?im=Resize=480?im=Resize=(60,60)",
     title: "FRESH BEEF",
     desc: "GET THE BEST MEAT.",
     bg: "fbf0f4",

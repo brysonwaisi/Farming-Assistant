@@ -19,7 +19,7 @@ const Products = ({ cat, filter, sort }) => {
       try {
         const res = await userRequest.get(
           cat
-            ? `products?categories=${cat}`
+            ? `products?category=${cat}`
             : "products"
         );
 

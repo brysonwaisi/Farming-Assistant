@@ -36,7 +36,7 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
-    await  Product.findByIdAndDelete(req.params.id)
+    await Product.findByIdAndDelete(req.params.id)
     res.status(200).json("Product has been deleted...")
   } catch(err) {
     res.status(500).json(err)
@@ -64,7 +64,7 @@ router.get("/", async (req, res) => {
     if(qNew) {
       products = await Product.find().sort({createdAt: -1}).limit(5)
     } else if (qCategory) {
-      products = awaitProduct.find({
+      products = await Product.find({
         categories: {
         $in: [qCategory],
       },

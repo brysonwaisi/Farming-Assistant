@@ -14,7 +14,6 @@ const Logout = () => {
     dispatch(logout());
     localStorage.removeItem("persist:root");
     const local = localStorage.removeItem("accessToken");
-    console.log(local);
     navigate("/login");
   };
 

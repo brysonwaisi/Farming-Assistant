@@ -46,10 +46,10 @@ const ProductList = () => {
 
   const handleFilter = (e) => {
     const value = e.target.value;
-    setFilter((prevFilter) => ({
-      ...prevFilter,
-      [e.target.name]: value.toLowerCase(),
-    }));
+    setFilter({
+      ...filter,
+      [e.target.name]: value,
+    });
   };
 
   return (

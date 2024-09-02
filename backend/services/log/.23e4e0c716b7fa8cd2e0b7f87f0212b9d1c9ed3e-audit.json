@@ -34,6 +34,26 @@
             "date": 1724587403148,
             "name": "/home/bryson/farming-assistant/backend/services/log/2024-08-25-15-results.log",
             "hash": "6ae9e2b10907e90afa8e03111605101514385bef43819f63d9079dd81f1ed597"
+        },
+        {
+            "date": 1725180032376,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2024-09-01-11-results.log",
+            "hash": "c3572b909ad75d192da453d02cecaed9ce9f8b4a55d3c65e052ce03c2f0e97f1"
+        },
+        {
+            "date": 1725181798316,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2024-09-01-12-results.log",
+            "hash": "24bae2bf51be6b2b1da1048421052a149c1223a721fdcf6fd9130cf663e1cfe4"
+        },
+        {
+            "date": 1725191705690,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2024-09-01-14-results.log",
+            "hash": "90403a4a2260a5896223725ed0e261a7a71aa4c6b55ac7ab306513588b9649e5"
+        },
+        {
+            "date": 1725192052563,
+            "name": "/home/bryson/farming-assistant/backend/services/log/2024-09-01-15-results.log",
+            "hash": "d86d9548da9d85b9bdd278097b9d65041efd1e3ed02d0cc96c5f928bcaa68e7b"
         }
     ],
     "hashType": "sha256"
