@@ -1,31 +1,35 @@
-const { mongoose } = require("mongoose");
-const colors = require("colors");
-
-require('dotenv').config()
+require('colors');
+const { mongoose } = require('mongoose');
+const logger = require('../services/logger');
+require('dotenv').config();
 
 const connectDB = async () => {
+  let db;
   try {
     const conn = await mongoose.connect(process.env.MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log(
-      `MongoDB Connected: ${conn.connection.host}`.cyan.underline.bold
+    logger.info(
+      `MongoDB Connected: ${conn.connection.host}`.cyan.underline.bold,
     );
-    const db = mongoose.connection;
-    
-    db.once("open", () => {
-      logger.info("MongoDB connected successfully");
+
+    db = mongoose.connection;
+
+    db.once('open', () => {
+      logger.info('MongoDB connected successfully');
     });
-    db.on("disconnected", () => {
-      logger.warn("MongoDB disconnected");
+    db.on('disconnected', () => {
+      logger.warn('MongoDB disconnected');
     });
   } catch (error) {
-    console.log("Error connection to MongoDB: ", error.message);
-    db.on("error", (error) => {
-      logger.error(`MongoDB connection error: ${error}`);
-    });
-    process.exit(1); // 1 is failure, 0 status code is success
+    logger.error('Error connecting to MongoDB: ', error.message);
+    if (db) {
+      db.on('error', (err) => {
+        logger.error(`MongoDB connection error: ${err}`);
+      });
+    }
+    process.exit(1); // 1 indicates failure,  0 status code is success
   }
 };
 

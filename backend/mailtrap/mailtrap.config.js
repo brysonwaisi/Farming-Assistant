@@ -1,5 +1,5 @@
-const { MailtrapClient } = require("mailtrap");
-const dotenv = require("dotenv");
+const { MailtrapClient } = require('mailtrap');
+const dotenv = require('dotenv');
 
 dotenv.config();
 

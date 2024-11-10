@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const newsletterSubscriptionSchema = new mongoose.Schema(
   {
@@ -13,12 +13,12 @@ const newsletterSubscriptionSchema = new mongoose.Schema(
       default: Date.now,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const NewsletterSubscription = mongoose.model(
-  "NewsletterSubscription",
-  newsletterSubscriptionSchema
+  'NewsletterSubscription',
+  newsletterSubscriptionSchema,
 );
 
 module.exports = NewsletterSubscription;

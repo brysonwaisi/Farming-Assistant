@@ -1,17 +1,18 @@
-const router = require("express").Router();
-const NewsletterSubscription = require("../models/Newsletter"); 
+const router = require('express').Router();
+const NewsletterSubscription = require('../models/Newsletter');
+const logger = require('../services/logger');
 
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { email } = req.body;
 
     const newSubscription = new NewsletterSubscription({ email });
-    await newSubscription.save(); 
+    await newSubscription.save();
 
-    res.status(201).json({ message: "Subscription successful" });
+    res.status(201).json({ message: 'Subscription successful' });
   } catch (error) {
-    console.error("Subscription failed:", error);
-    res.status(500).json({ message: "Subscription failed" });
+    logger.error('Subscription failed:', error);
+    res.status(500).json({ message: 'Subscription failed' });
   }
 });
 
