@@ -3,7 +3,6 @@ require("winston-daily-rotate-file");
 const fs = require("fs");
 const path = require("path");
 
-
 const env = process.env.NODE_ENV || "development";
 const logDir = path.join(process.cwd(), "log");
 const datePatternConfiguration = {
@@ -12,7 +11,7 @@ const datePatternConfiguration = {
   everMinute: "YYYY-MM-DD-THH-mm",
 };
 const numberOfDaysToKeepLog = 30;
-const fileSizeToRotate = 2; // in megabytes
+const fileSizeToRotate = 1; // in megabytes
 
 // Create the log directory if it does not exist
 if (!fs.existsSync(logDir)) {

@@ -1,12 +1,19 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const CryptoJS = require("crypto-js");
-const jwt = require("jsonwebtoken");
-const crypto = require("crypto-js");
+const crypto = require("crypto");
+const {
+  generateTokenAndSetCookie,
+} = require("../util/generateTokenAndSetCookie");
+const {
+  sendVerificationEmail,
+  sendWelcomeEmail,
+  sendPasswordResetEmail,
+  sendResetSuccessEmail,
+} = require("../mailtrap/emails");
 
 // Register
 router.post("/register", async (req, res) => {
-
   const verificationToken = Math.floor(
     100000 + Math.random() * 900000
   ).toString();
@@ -25,7 +32,9 @@ router.post("/register", async (req, res) => {
   try {
     const savedUser = await newUser.save();
 
-    await sendVerificationEmail(user.email, verificationToken);
+    generateTokenAndSetCookie(res, savedUser._id);
+
+    await sendVerificationEmail(savedUser.email, verificationToken);
 
     res.status(201).json(savedUser);
   } catch (err) {
@@ -52,20 +61,13 @@ router.post("/login", async (req, res) => {
       if (originalPass !== inputPass) {
         res.status(401).json("Wrong password!");
       } else {
-        const accessToken = jwt.sign(
-          {
-            id: user._id,
-            isAdmin: user.isAdmin,
-          },
-          process.env.JWT_SECRET,
-          { expiresIn: "1d" }
-        );
+        generateTokenAndSetCookie(res, user._id);
 
         const { password, ...others } = user._doc;
 
         user.lastLogin = new Date();
 
-        res.status(200).json({ ...others, accessToken });
+        res.status(200).json({ ...others });
       }
     }
   } catch (err) {
@@ -82,12 +84,10 @@ router.post("/verify-email", async (req, res) => {
     });
 
     if (!user) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "Invalid or expired verification code",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "Invalid or expired verification code",
+      });
     }
     user.isVerified = true;
     user.verificationToken = undefined;
@@ -113,27 +113,37 @@ router.post("/verify-email", async (req, res) => {
 router.post("/forgot-password", async (req, res) => {
   const { email } = req.body;
   try {
-    const user = await User.findOne({ email});
+    const user = await User.findOne({ email });
 
     if (!user) {
-			return res.status(400).json({ success: false, message: "User not found" });
-		}
+      return res
+        .status(400)
+        .json({ success: false, message: "User not found" });
+    }
 
     const resetToken = crypto.randomBytes(20).toString("hex");
-		const resetTokenExpiresAt = Date.now() + 1 * 60 * 60 * 1000; // 1 hour
+    const resetTokenExpiresAt = Date.now() + 1 * 60 * 60 * 1000; // 1 hour
 
-		user.resetPasswordToken = resetToken;
-		user.resetPasswordExpiresAt = resetTokenExpiresAt;
+    user.resetPasswordToken = resetToken;
+    user.resetPasswordExpiresAt = resetTokenExpiresAt;
 
-		await user.save();
+    await user.save();
 
-		// send email
-		await sendPasswordResetEmail(user.email, `${process.env.CLIENT_URL}/reset-password/${resetToken}`);
+    // send email
+    await sendPasswordResetEmail(
+      user.email,
+      `${process.env.CLIENT_URL}/reset-password/${resetToken}`
+    );
 
-		res.status(200).json({ success: true, message: "Password reset link sent to your email" });
-	} catch (error) {
-		console.log("Error in forgotPassword ", error);
-		res.status(400).json({ success: false, message: error.message });
+    res
+      .status(200)
+      .json({
+        success: true,
+        message: "Password reset link sent to your email",
+      });
+  } catch (error) {
+    console.log("Error in forgotPassword ", error);
+    res.status(400).json({ success: false, message: error.message });
   }
 });
 
@@ -175,6 +185,37 @@ router.post("/reset-password/:token", async (req, res) => {
   }
 });
 
-router.post("/logout", async (req, res) => {});
+router.post("/logout", async (req, res) => {
+  res.clearCookie("token");
+  res.status(200).json({ success: true, message: "Logged out successfully" });
+});
+
+router.get("/check-auth", async (req, res) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res
+      .status(401)
+      .json({ success: false, message: "No token provided" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.userId).select("-password");
+    if (!user) {
+      return res
+        .status(400)
+        .json({ success: false, message: "User not found" });
+    }
+
+    res.status(200).json({ success: true, user });
+  } catch (error) {
+    console.log("Error in checkAuth ", error);
+    if (error.name === "JsonWebTokenError") {
+      return res.status(401).json({ success: false, message: "Invalid token" });
+    }
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
 
 module.exports = router;

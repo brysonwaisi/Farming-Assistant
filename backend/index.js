@@ -1,6 +1,6 @@
 const express = require('express');
-const { default: mongoose } = require('mongoose');
 const dotenv = require("dotenv");
+const connectDB = require("./db/config");
 const userRoute = require("./routes/user");
 const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
@@ -11,6 +11,7 @@ const newsletterRoute = require('./routes/newsletter');
 const cors = require('cors');
 const morgan = require('morgan')
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const http = require("http");
 const logger = require("./services/logger");
 
@@ -18,30 +19,13 @@ dotenv.config()
 
 const app = express();
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-// Capture connection-related events and log them
-const db = mongoose.connection;
-db.on("error", (error) => {
-  logger.error(`MongoDB connection error: ${error}`);
-});
-db.once("open", () => {
-  logger.info("MongoDB connected successfully");
-});
-db.on("disconnected", () => {
-  logger.warn("MongoDB disconnected");
-});
-
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to the Farming Assistant Backend API." });
 });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.use(cors());
 app.use(express.json());
@@ -95,6 +79,7 @@ const errorHandler = (error) => {
 server.on("error", errorHandler);
 
 server.listen(port, () => {
+  connectDB();
   const address = server.address();
   const bind = typeof address === "string" ? `pipe ${address}` : `port ${port}`;
   if (process.env.NODE_ENV === "production") {
