@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const env = process.env.NODE_ENV || "development";
-const logDir = path.join(__dirname, "log");
+const logDir = path.join(process.cwd(), "log");
 const datePatternConfiguration = {
   default: "YYYY-MM-DD",
   everHour: "YYYY-MM-DD-HH",
