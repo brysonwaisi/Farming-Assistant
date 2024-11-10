@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 const crypto = require("crypto");
+const jwt = require("jsonwebtoken");
 const {
   generateTokenAndSetCookie,
 } = require("../util/generateTokenAndSetCookie");
