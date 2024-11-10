@@ -28,16 +28,42 @@ const userSlice = createSlice({
     signupSuccess: (state, action) => {
       state.isFetching = false;
       state.currentUser = action.payload;
-      state.isLoggedIn = false; 
+      state.isLoggedIn = false;
     },
     signupFailure: (state) => {
       state.isFetching = false;
       state.error = true;
-      state.isLoggedIn = false; 
+      state.isLoggedIn = false;
+    },
+    forgotpasswordStart: (state) => {
+      state.isFetching = true;
+    },
+    forgotpasswordSuccess: (state, action) => {
+      state.isFetching = false;
+      state.currentUser = action.payload;
+      state.isLoggedIn = false;
+    },
+    forgotpasswordFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+      state.isLoggedIn = false;
+    },
+    resetpasswordStart: (state) => {
+      state.isFetching = true;
+    },
+    resetpasswordSuccess: (state, action) => {
+      state.isFetching = false;
+      state.currentUser = action.payload;
+      state.isLoggedIn = false;
+    },
+    resetpasswordFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+      state.isLoggedIn = false;
     },
     logout: (state) => {
       state.currentUser = null;
-      state.isLoggedIn = false; 
+      state.isLoggedIn = false;
     },
   },
 });
@@ -49,6 +75,12 @@ export const {
   signupStart,
   signupSuccess,
   signupFailure,
+  forgotpasswordStart,
+  forgotpasswordSuccess,
+  forgotpasswordFailure,
+  resetpasswordStart,
+  resetpasswordSuccess,
+  resetpasswordFailure,
   logout,
 } = userSlice.actions;
 export default userSlice.reducer;

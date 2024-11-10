@@ -4,16 +4,17 @@ import { mobile } from "../smallScreen";
 import { useDispatch } from "react-redux";
 import { signup } from "../redux/apiCalls";
 import { useNavigate } from "react-router-dom"; 
+import { motion } from 'framer-motion'
+import backgroundImage from '../assets/home.svg'
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   width: 100vw;
   height: 100vh;
   background: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2)
     ),
-    url("https://futtahighlights.files.wordpress.com/2023/03/hometxt.png?resize=219%2C219")
-      center;
+    url(${backgroundImage}) center;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -23,7 +24,8 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 40%;
   padding: 20px;
-  background-color: white;
+  border-radius: 20px;
+  background-color: beige;
   ${mobile({ width: "75%" })}
 `;
 
@@ -31,6 +33,7 @@ const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
 `;
+
 
 const Form = styled.form`
   display: flex;
@@ -42,7 +45,8 @@ const Input = styled.input`
   min-width: 40%;
   margin: 20px 10px 0px 0px;
   padding: 10px;
-  font-size: 22px
+  border-radius: 6px;
+  font-size: 22px;
 `;
 
 const Agreement = styled.span`
@@ -58,6 +62,7 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   font-size: 18px;
+  border-radius: 10px;
 `;
 
 const Register = () => {
@@ -88,15 +93,15 @@ const Register = () => {
   };
 
   return (
-    <Container>
+    <Container
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form onSubmit={handleSubmit}>
-          <Input
-            name="name"
-            placeholder="first name"
-            onChange={handleChange}
-          />
+          <Input name="name" placeholder="first name" onChange={handleChange} />
           <Input
             name="lastName"
             placeholder="last name"

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { mobile } from "../smallScreen";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../redux/apiCalls";
+import { resetpassword } from "../redux/apiCalls";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import backgroundImage from "../assets/home.svg";
 
@@ -64,28 +64,33 @@ const Button = styled.button`
   border-radius: 10px;
 `;
 
-const Error = styled.span`
-  color: red;
-`;
-
-const StyledLink = styled(Link)`
-  margin: 5px 0px;
-  font-size: 18px;
-  text-decoration: underline;
-  cursor: pointer;
-`;
-
-const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
+const ResetPassword = () => { //TODO
+  const [newPassword, setNewPassword] = useState("");
+  const[confirmNewPassword, setConfirmNewPassword] = useState("");
+  // const [isSubmitted, setIsSubmitted] = useState(false);
   const { isFetching, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  const handleClick = (e) => {
+  const {token} = useParams();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => { 
+    
+    if (newPassword !== confirmNewPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
     e.preventDefault();
-    login(dispatch, { username, password });
-  };
+    await dispatch(resetpassword( token, newPassword));
 
+    setTimeout(() => {
+      navigate("/login");
+    }, 5000);
+
+    // setIsSubmitted(true);
+
+  };
   return (
     <Container
       initial={{ opacity: 0, y: 20 }}
@@ -93,27 +98,30 @@ const Login = () => {
       transition={{ duration: 0.5 }}
     >
       <Wrapper>
-        <Title>SIGN IN</Title>
+        <Title>Reset Password</Title>
         <Form>
           <Input
-            placeholder="username"
-            onChange={(e) => setUsername(e.target.value)}
+            type="password"
+            placeholder="New Password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            required
           />
           <Input
             type="password"
-            placeholder="password"
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder="confirm password"
+            value={confirmNewPassword}
+            onChange={(e) => setConfirmNewPassword(e.target.value)}
+            required
           />
-          <Button onClick={handleClick} disabled={isFetching}>
-            LOGIN
+          
+          <Button onClick={handleSubmit} disabled={isFetching}>
+            Continue
           </Button>
-          {error && <Error>Check your details again...</Error>}
-          <StyledLink to="/forgot-password">FORGOT PASSWORD?</StyledLink>{" "}
-          <StyledLink to="/register">CREATE A NEW ACCOUNT</StyledLink>{" "}
         </Form>
       </Wrapper>
     </Container>
   );
 };
 
-export default Login;
+export default ResetPassword;

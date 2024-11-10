@@ -3,8 +3,11 @@ import Product from "./components/Product";
 import ProductList from "./pages/ProductList";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Logout from "./pages/Logout";
 import Cart from "./pages/Cart";
 import Success from "./pages/Success";
+import ForgotPassword from './pages/ForgotPassword'
+import ResetPassword from './pages/ResetPassword'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
@@ -23,8 +26,22 @@ function App() {
           element={user ? <Navigate to="/" /> : <Register />}
         />
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
-        <Route path="/logout" element={user ? <Navigate to="/" /> : <Login />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/forgot-password"
+          element={user ? <Navigate to="/" /> : <ForgotPassword />}
+        />
+        <Route
+          path="/reset-password/:token"
+          element={user ? <Navigate to="/" /> : <ResetPassword />}
+        />
+        <Route
+          path="/cart"
+          element={!user ? <Navigate to="/login" /> : <Cart />}
+        />
+        <Route
+          path="/logout"
+          element={!user ? <Navigate to="/login" /> : <Logout />}
+        />
       </Routes>
     </Router>
   );
